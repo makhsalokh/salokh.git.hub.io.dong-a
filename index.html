@@ -72,6 +72,31 @@
             color: #3ca370;
         }
 
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .action-button {
+            background-color: #2e8b57;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .action-button:hover {
+            background-color: #3ca370;
+        }
+
         .animated-element {
             width: 100px;
             height: 100px;
@@ -125,7 +150,10 @@
 
             <div class="assignment-card">
                 <h3>Assignment 5</h3>
-                <span class="click-here">Click Here</span>
+                <div class="button-container">
+                    <a href="https://behruz1262.github.io/encryption-decryption-tool" target="_blank" class="action-button">Cryptography Tool</a>
+                    <a href="documentation.html" target="_blank" class="action-button">Documentation</a>
+                </div>
             </div>
         </div>
 
@@ -135,7 +163,7 @@
     <script>
         document.querySelectorAll('.assignment-card').forEach(card => {
             card.addEventListener('click', function(e) {
-                if (e.target !== this && e.target.className === 'click-here') return;
+                if (e.target !== this && (e.target.className === 'click-here' || e.target.className === 'action-button')) return;
                 this.style.backgroundColor = '#e8f5e9';
                 setTimeout(() => {
                     this.style.backgroundColor = '#f9f9f9';
