@@ -21,11 +21,30 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
         }
 
         .name, .id {
             font-size: 2.5rem;
             font-weight: bold;
+        }
+
+        .grade-box {
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            color: #2e8b57;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: right;
+            min-width: 140px;
+        }
+
+        .grade-box small {
+            font-weight: normal;
+            color: #555;
+            font-size: 0.8rem;
         }
 
         .container {
@@ -165,8 +184,15 @@
 </head>
 <body>
     <div class="header">
-        <div class="name">Salokhiddin Makhmudov</div>
-        <div class="id">2417956</div>
+        <div>
+            <div class="name">Salokhiddin Makhmudov</div>
+            <div class="id">2417956</div>
+        </div>
+        <div class="grade-box" id="gradeBox">
+            <strong>📊 Grade:</strong>
+            <div><span id="gradePercent">Loading...</span>%</div>
+            <small><span id="earnedPoints">0</span> / <span id="totalPoints">0</span></small>
+        </div>
     </div>
 
     <div class="container">
@@ -209,6 +235,16 @@
                     <a href="documentation.html" target="_blank" class="action-button">Documentation</a>
                 </div>
             </div>
+
+            <!-- Assignment 10 Added Below -->
+            <div class="assignment-card">
+                <h3>Assignment 10</h3>
+                <div class="assignment-subtitle">Lumen Project</div>
+                <div class="button-container">
+                    <a href="lumenchat.html" target="_blank" class="action-button">Lumen Chat</a>
+                    <a href="LumenReport.html" target="_blank" class="action-button">Lumen Report</a>
+                </div>
+            </div>
         </div>
 
         <h2 class="section-title">Upcoming Assignments</h2>
@@ -241,6 +277,18 @@
                 }, 300);
             });
         });
+
+        // Grade fetch
+        fetch("https://script.google.com/macros/s/AKfycbwj-BXuRBsF6Ha4fT4u2VeRYBayijTAmyUE_VPMq-4R-WEqJe52pXIe4jUtnlsCDPkP/exec")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("gradePercent").textContent = data.currentPercentage;
+                document.getElementById("earnedPoints").textContent = data.earnedPoints;
+                document.getElementById("totalPoints").textContent = data.totalPossiblePoints;
+            })
+            .catch(() => {
+                document.getElementById("gradeBox").innerHTML = "<span style='color:red;'>Grade load failed</span>";
+            });
     </script>
 </body>
 </html>
