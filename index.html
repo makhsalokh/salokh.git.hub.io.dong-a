@@ -409,6 +409,7 @@
                 <div class="script-title">Week 7 AP Script</div>
                 <div class="button-container">
                     <a href="https://docs.google.com/document/d/1m73vqyvNj2j3SFLPM8BTX0Id8Gst_APQ0dUcTu--Eac/edit?usp=sharing" target="_blank" class="action-button">Open Document</a>
+                    <button class="action-button" onclick="openModal('googleSheetModal')">Google Sheet</button>
                 </div>
             </div>
 
@@ -484,6 +485,17 @@
         </div>
     </div>
 
+    <!-- Modal for Google Sheet -->
+    <div id="googleSheetModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Assignment 4 - Google Sheet</h2>
+                <span class="close" onclick="closeModal('googleSheetModal')">&times;</span>
+            </div>
+            <iframe id="googleSheetFrame" class="modal-iframe" src=""></iframe>
+        </div>
+    </div>
+
     <!-- Modal for ChatGPT -->
     <div id="chatgptModal" class="modal">
         <div class="modal-content">
@@ -507,7 +519,7 @@
         });
 
         // Grade fetch
-        fetch("https://script.google.com/macros/s/AKfycbwj-BXuRBsF6Ha4fT4u2VeRYBayijTAmyUE_VPMq-4R-WEqJe52pXIe4jUtnlsCDPkP/exec")
+        fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLhrY98NFipV4zUNusQD5eQvFLqQYrY0WtOOgI4tVjGFBsW8E9JMh-M6tvfghC9zPNFwXCm5B2eBVMuSDFgdsBHsLpQ7P1NBcKB3xWk1HYhkPZk8N9ldPWD3D6gba1hkgTDJY58q8jlsur-Epzwuh4_QYE8VIkty4yqKUbL7impf8TAP72hneLCf4vg4rx5Db3M6j8aTdJXsW-3MIpI1hUAEJv1iqhySFvUb75fjeW1EYlodRbVYq7Txppr572gqu3O87WAM0g3Ss6ofnf6P8_fGShxUxg&lib=MKDf1LIwpIOGKghFu4P1gM1hwL89NOhPq")
             .then(res => res.json())
             .then(data => {
                 document.getElementById("gradePercent").textContent = data.currentPercentage;
@@ -527,7 +539,10 @@
                 document.getElementById('reportFrame').src = 'https://normanaffleck.github.io/IBM/DI/Take_a_hike.html';
             } else if (modalId === 'mapModal') {
                 document.getElementById('mapFrame').src = 'https://drive.google.com/file/d/1lyDnpiJNKUzlQujuFeAIQOAetIH6Kk2Z/preview';
+            } else if (modalId === 'googleSheetModal') {
+                document.getElementById('googleSheetFrame').src = 'https://docs.google.com/spreadsheets/d/1YfxGJ26F6sPC8jQv6w5bSd4qTrRM_llXPINxp9LJfa0/edit?usp=sharing';
             } else if (modalId === 'chatgptModal') {
+                // For ChatGPT shared links, we need to use the embed format
                 document.getElementById('chatgptFrame').src = 'https://chatgpt.com/share/68490b6b-1f50-8011-a26f-03f83719a180';
             }
         }
@@ -541,6 +556,8 @@
                 document.getElementById('reportFrame').src = '';
             } else if (modalId === 'mapModal') {
                 document.getElementById('mapFrame').src = '';
+            } else if (modalId === 'googleSheetModal') {
+                document.getElementById('googleSheetFrame').src = '';
             } else if (modalId === 'chatgptModal') {
                 document.getElementById('chatgptFrame').src = '';
             }
@@ -550,12 +567,15 @@
         window.onclick = function(event) {
             const reportModal = document.getElementById('reportModal');
             const mapModal = document.getElementById('mapModal');
+            const googleSheetModal = document.getElementById('googleSheetModal');
             const chatgptModal = document.getElementById('chatgptModal');
             
             if (event.target === reportModal) {
                 closeModal('reportModal');
             } else if (event.target === mapModal) {
                 closeModal('mapModal');
+            } else if (event.target === googleSheetModal) {
+                closeModal('googleSheetModal');
             } else if (event.target === chatgptModal) {
                 closeModal('chatgptModal');
             }
@@ -566,6 +586,7 @@
             if (event.key === 'Escape') {
                 closeModal('reportModal');
                 closeModal('mapModal');
+                closeModal('googleSheetModal');
                 closeModal('chatgptModal');
             }
         });
