@@ -35,20 +35,40 @@
 
         .grade-box {
             background-color: white;
-            padding: 10px 15px;
-            border-radius: 8px;
+            padding: 15px 20px;
+            border-radius: 10px;
             color: #2e8b57;
             font-weight: bold;
             font-size: 1rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
             text-align: right;
-            min-width: 140px;
+            min-width: 180px;
+            border: 2px solid #2e8b57;
         }
 
-        .grade-box small {
-            font-weight: normal;
-            color: #555;
-            font-size: 0.8rem;
+        .grade-box .grade-title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #2e8b57;
+        }
+
+        .grade-box .grade-percentage {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2e8b57;
+            margin: 5px 0;
+        }
+
+        .grade-box .grade-points {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 3px 0;
+        }
+        
+        .grade-box .available-points {
+            font-size: 0.85rem;
+            color: #888;
+            font-style: italic;
         }
 
         .container {
@@ -374,9 +394,10 @@
             <div class="id">2417956</div>
         </div>
         <div class="grade-box" id="gradeBox">
-            <strong>📊 Grade:</strong>
-            <div><span id="gradePercent">Loading...</span>%</div>
-            <small><span id="earnedPoints">0</span> / <span id="totalPoints">0</span></small>
+            <div class="grade-title">📊 Portfolio Grade</div>
+            <div class="grade-percentage"><span id="gradePercent">Loading...</span>%</div>
+            <div class="grade-points">Earned: <span id="earnedPoints">0</span> / <span id="totalPoints">0</span></div>
+            <div class="available-points">Available: <span id="availablePoints">0</span> pts</div>
         </div>
     </div>
 
@@ -525,6 +546,7 @@
                 document.getElementById("gradePercent").textContent = data.currentPercentage;
                 document.getElementById("earnedPoints").textContent = data.earnedPoints;
                 document.getElementById("totalPoints").textContent = data.totalPossiblePoints;
+                document.getElementById("availablePoints").textContent = data.availablePoints || (data.totalPossiblePoints - data.earnedPoints);
             })
             .catch(() => {
                 document.getElementById("gradeBox").innerHTML = "<span style='color:red;'>Grade load failed</span>";
