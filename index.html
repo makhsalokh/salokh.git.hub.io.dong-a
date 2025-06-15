@@ -207,26 +207,7 @@
         }
 
         .ai-tutor-section {
-            text-align: center;
-            margin-top: 40px;
-            padding: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        .ai-tutor-section h2 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .ai-tutor-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
+            margin-top: 30px;
         }
 
         .animated-element {
@@ -524,7 +505,7 @@
                 </div>
             </div>
 
-            <!-- Week 16 Assignment Added -->
+            <!-- Week 16 Assignment -->
             <div class="assignment-card">
                 <h3>Week 16</h3>
                 <div class="assignment-subtitle">Take a Hike Project</div>
@@ -533,29 +514,19 @@
                     <button class="action-button" onclick="openModal('mapModal')">Map</button>
                 </div>
             </div>
-        </div>
 
-        <h2 class="section-title">Upcoming Assignments</h2>
-        <div class="assignments">
-            <div class="assignment-card uncompleted">
-                <h3>Week 13</h3>
-                <div class="assignment-subtitle">Coming Soon</div>
+            <!-- AI Tutor Section as Assignment Card -->
+            <div class="assignment-card">
+                <h3>🤖 AI Tutor</h3>
+                <div class="assignment-subtitle">Learning Assistant</div>
                 <div class="button-container">
-                    <span class="action-button" style="background-color: #d4a017;">Not Available</span>
+                    <a href="https://chatgpt.com/share/684b31a6-cf44-8011-9f2b-4fadd0f549b7" target="_blank" class="action-button chatgpt-button">
+                        💬 Chat History
+                    </a>
+                    <a href="https://docs.google.com/document/d/1uyeeyjxluSMmpDoyk1qlhDEpTeXgYzE-k3d-1FFDa-E/edit?usp=drivesdk" target="_blank" class="action-button reflection-button">
+                        📝 Reflection
+                    </a>
                 </div>
-            </div>
-        </div>
-
-        <!-- AI Tutor Section -->
-        <div class="ai-tutor-section">
-            <h2>🤖 AI Tutor</h2>
-            <div class="ai-tutor-buttons">
-                <button class="ai-tutor-button chatgpt-button" onclick="openModal('chatHistoryModal')">
-                    💬 Chat History
-                </button>
-                <button class="ai-tutor-button reflection-button" onclick="openModal('reflectionModal')">
-                    📝 Reflection
-                </button>
             </div>
         </div>
 
@@ -587,28 +558,6 @@
                 <span class="close" onclick="closeModal('mapModal')">&times;</span>
             </div>
             <iframe id="mapFrame" class="modal-iframe" src=""></iframe>
-        </div>
-    </div>
-
-    <!-- Modal for Chat History -->
-    <div id="chatHistoryModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>AI Tutor - Chat History</h2>
-                <span class="close" onclick="closeModal('chatHistoryModal')">&times;</span>
-            </div>
-            <iframe id="chatHistoryFrame" class="modal-iframe" src=""></iframe>
-        </div>
-    </div>
-
-    <!-- Modal for Reflection -->
-    <div id="reflectionModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>AI Tutor - Reflection</h2>
-                <span class="close" onclick="closeModal('reflectionModal')">&times;</span>
-            </div>
-            <iframe id="reflectionFrame" class="modal-iframe" src=""></iframe>
         </div>
     </div>
 
@@ -772,10 +721,6 @@
                 document.getElementById('reportFrame').src = 'https://normanaffleck.github.io/IBM/DI/Take_a_hike.html';
             } else if (modalId === 'mapModal') {
                 document.getElementById('mapFrame').src = 'https://drive.google.com/file/d/1lyDnpiJNKUzlQujuFeAIQOAetIH6Kk2Z/preview';
-            } else if (modalId === 'chatHistoryModal') {
-                document.getElementById('chatHistoryFrame').src = 'https://chatgpt.com/share/684b31a6-cf44-8011-9f2b-4fadd0f549b7';
-            } else if (modalId === 'reflectionModal') {
-                document.getElementById('reflectionFrame').src = 'https://docs.google.com/document/d/1uyeeyjxluSMmpDoyk1qlhDEpTeXgYzE-k3d-1FFDa-E/edit?usp=drivesdk';
             }
         }
 
@@ -788,16 +733,20 @@
                 document.getElementById('reportFrame').src = '';
             } else if (modalId === 'mapModal') {
                 document.getElementById('mapFrame').src = '';
-            } else if (modalId === 'chatHistoryModal') {
-                document.getElementById('chatHistoryFrame').src = '';
-            } else if (modalId === 'reflectionModal') {
-                document.getElementById('reflectionFrame').src = '';
             }
         }
 
         // Close modal when clicking outside of it
         window.onclick = function(event) {
-            const modals = ['reportModal', 'mapModal', 'chatHistoryModal', 'reflectionModal'];
+            const modals = ['reportModal', 'mapModal'];
             
             modals.forEach(modalId => {
-                const modal = document.getElementById(
+                const modal = document.getElementById(modalId);
+                if (event.target === modal) {
+                    closeModal(modalId);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
