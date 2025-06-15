@@ -147,6 +147,36 @@
             background-color: #0d8a6b;
         }
 
+        .ai-tutor-button {
+            background-color: #7c3aed;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .ai-tutor-button:hover {
+            background-color: #6d28d9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .reflection-button {
+            background-color: #f59e0b;
+        }
+
+        .reflection-button:hover {
+            background-color: #d97706;
+        }
+
         .uncompleted {
             background-color: #fff8e6;
             border: 1px dashed #d4a017;
@@ -174,6 +204,29 @@
 
         .google-folder-button:hover {
             background-color: #3367D6;
+        }
+
+        .ai-tutor-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .ai-tutor-section h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .ai-tutor-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .animated-element {
@@ -379,6 +432,17 @@
             height: calc(100% - 60px);
             border: none;
         }
+
+        @media (max-width: 768px) {
+            .ai-tutor-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .ai-tutor-button {
+                width: 200px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -455,9 +519,9 @@
                     <a href="lumenchat.html" target="_blank" class="action-button">Lumen Chat</a>
                     <a href="LumenReport.html" target="_blank" class="action-button">Lumen Report</a>
                     <button class="action-button chatgpt-button" onclick="window.open('https://chatgpt.com/share/684b1685-1ba4-8011-b441-195646444c05', '_blank')">
-  ChatGPT Chat History
-</button>
-              </div>
+                        ChatGPT Chat History
+                    </button>
+                </div>
             </div>
 
             <!-- Week 16 Assignment Added -->
@@ -479,6 +543,19 @@
                 <div class="button-container">
                     <span class="action-button" style="background-color: #d4a017;">Not Available</span>
                 </div>
+            </div>
+        </div>
+
+        <!-- AI Tutor Section -->
+        <div class="ai-tutor-section">
+            <h2>🤖 AI Tutor</h2>
+            <div class="ai-tutor-buttons">
+                <button class="ai-tutor-button chatgpt-button" onclick="openModal('chatHistoryModal')">
+                    💬 Chat History
+                </button>
+                <button class="ai-tutor-button reflection-button" onclick="openModal('reflectionModal')">
+                    📝 Reflection
+                </button>
             </div>
         </div>
 
@@ -510,6 +587,28 @@
                 <span class="close" onclick="closeModal('mapModal')">&times;</span>
             </div>
             <iframe id="mapFrame" class="modal-iframe" src=""></iframe>
+        </div>
+    </div>
+
+    <!-- Modal for Chat History -->
+    <div id="chatHistoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>AI Tutor - Chat History</h2>
+                <span class="close" onclick="closeModal('chatHistoryModal')">&times;</span>
+            </div>
+            <iframe id="chatHistoryFrame" class="modal-iframe" src=""></iframe>
+        </div>
+    </div>
+
+    <!-- Modal for Reflection -->
+    <div id="reflectionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>AI Tutor - Reflection</h2>
+                <span class="close" onclick="closeModal('reflectionModal')">&times;</span>
+            </div>
+            <iframe id="reflectionFrame" class="modal-iframe" src=""></iframe>
         </div>
     </div>
 
@@ -673,6 +772,10 @@
                 document.getElementById('reportFrame').src = 'https://normanaffleck.github.io/IBM/DI/Take_a_hike.html';
             } else if (modalId === 'mapModal') {
                 document.getElementById('mapFrame').src = 'https://drive.google.com/file/d/1lyDnpiJNKUzlQujuFeAIQOAetIH6Kk2Z/preview';
+            } else if (modalId === 'chatHistoryModal') {
+                document.getElementById('chatHistoryFrame').src = 'https://chatgpt.com/share/684b31a6-cf44-8011-9f2b-4fadd0f549b7';
+            } else if (modalId === 'reflectionModal') {
+                document.getElementById('reflectionFrame').src = 'https://docs.google.com/document/d/1uyeeyjxluSMmpDoyk1qlhDEpTeXgYzE-k3d-1FFDa-E/edit?usp=drivesdk';
             }
         }
 
@@ -685,40 +788,16 @@
                 document.getElementById('reportFrame').src = '';
             } else if (modalId === 'mapModal') {
                 document.getElementById('mapFrame').src = '';
-            }
-        }
-
-        // ChatGPT function - opens in new tab with proper attributes
-        function openChatGPT() {
-            const chatUrl = 'https://chatgpt.com/share/68490b6b-1f50-8011-a26f-03f83719a180';
-            // Open in new tab with specific attributes to ensure it works
-            const newWindow = window.open(chatUrl, '_blank', 'noopener,noreferrer');
-            
-            // Fallback: if popup blocked, show alert with link
-            if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-                alert('Please allow popups for this site, or manually visit: ' + chatUrl);
+            } else if (modalId === 'chatHistoryModal') {
+                document.getElementById('chatHistoryFrame').src = '';
+            } else if (modalId === 'reflectionModal') {
+                document.getElementById('reflectionFrame').src = '';
             }
         }
 
         // Close modal when clicking outside of it
         window.onclick = function(event) {
-            const reportModal = document.getElementById('reportModal');
-            const mapModal = document.getElementById('mapModal');
+            const modals = ['reportModal', 'mapModal', 'chatHistoryModal', 'reflectionModal'];
             
-            if (event.target === reportModal) {
-                closeModal('reportModal');
-            } else if (event.target === mapModal) {
-                closeModal('mapModal');
-            }
-        }
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal('reportModal');
-                closeModal('mapModal');
-            }
-        });
-    </script>
-</body>
-</html>
+            modals.forEach(modalId => {
+                const modal = document.getElementById(
