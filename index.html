@@ -177,6 +177,22 @@
             background-color: #d97706;
         }
 
+        .samarqand-button {
+            background-color: #8b5cf6;
+        }
+
+        .samarqand-button:hover {
+            background-color: #7c3aed;
+        }
+
+        .report-button {
+            background-color: #ef4444;
+        }
+
+        .report-button:hover {
+            background-color: #dc2626;
+        }
+
         .uncompleted {
             background-color: #fff8e6;
             border: 1px dashed #d4a017;
@@ -515,6 +531,16 @@
                 </div>
             </div>
 
+            <!-- Project 2 Assignment -->
+            <div class="assignment-card">
+                <h3>Project 2</h3>
+                <div class="assignment-subtitle">Samarqand Tourism Website</div>
+                <div class="button-container">
+                    <button class="action-button samarqand-button" onclick="openModal('samarqandModal')">🏛️ Samarqand</button>
+                    <a href="https://docs.google.com/document/d/18ibeKcukRUqFS7S_ErC-lSVokF_PtisZZ7Zrd8LGF4I/edit?usp=drivesdk" target="_blank" class="action-button report-button">📄 Report</a>
+                </div>
+            </div>
+
             <!-- AI Tutor Section as Assignment Card -->
             <div class="assignment-card">
                 <h3>🤖 AI Tutor</h3>
@@ -558,6 +584,17 @@
                 <span class="close" onclick="closeModal('mapModal')">&times;</span>
             </div>
             <iframe id="mapFrame" class="modal-iframe" src=""></iframe>
+        </div>
+    </div>
+
+    <!-- Modal for Samarqand -->
+    <div id="samarqandModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Project 2 - Samarqand Tourism Website</h2>
+                <span class="close" onclick="closeModal('samarqandModal')">&times;</span>
+            </div>
+            <iframe id="samarqandFrame" class="modal-iframe" src=""></iframe>
         </div>
     </div>
 
@@ -721,6 +758,8 @@
                 document.getElementById('reportFrame').src = 'https://normanaffleck.github.io/IBM/DI/Take_a_hike.html';
             } else if (modalId === 'mapModal') {
                 document.getElementById('mapFrame').src = 'https://drive.google.com/file/d/1lyDnpiJNKUzlQujuFeAIQOAetIH6Kk2Z/preview';
+            } else if (modalId === 'samarqandModal') {
+                document.getElementById('samarqandFrame').src = 'https://makhsalokh.github.io/samarqand-i18n/';
             }
         }
 
@@ -733,12 +772,14 @@
                 document.getElementById('reportFrame').src = '';
             } else if (modalId === 'mapModal') {
                 document.getElementById('mapFrame').src = '';
+            } else if (modalId === 'samarqandModal') {
+                document.getElementById('samarqandFrame').src = '';
             }
         }
 
         // Close modal when clicking outside of it
         window.onclick = function(event) {
-            const modals = ['reportModal', 'mapModal'];
+            const modals = ['reportModal', 'mapModal', 'samarqandModal'];
             
             modals.forEach(modalId => {
                 const modal = document.getElementById(modalId);
