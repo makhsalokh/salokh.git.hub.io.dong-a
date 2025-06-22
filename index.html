@@ -531,13 +531,13 @@
                 </div>
             </div>
 
-            <!-- Project 2 Assignment -->
+            <!-- Project 2 Assignment - UPDATED -->
             <div class="assignment-card">
                 <h3>Project 2</h3>
                 <div class="assignment-subtitle">Samarqand Tourism Website</div>
                 <div class="button-container">
                     <button class="action-button samarqand-button" onclick="openModal('samarqandModal')">🏛️ Samarqand</button>
-                    <button class="action-button report-button" onclick="openModal('samarqandReportModal')">📄 Report</button>
+                    <button class="action-button report-button" onclick="openModal('samarqandReportModal')">📄 Samarqand Report</button>
                 </div>
             </div>
 
@@ -598,7 +598,7 @@
         </div>
     </div>
 
-    <!-- Modal for Samarqand Report -->
+    <!-- NEW Modal for Samarqand Report -->
     <div id="samarqandReportModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -760,7 +760,7 @@
                 document.getElementById("gradeBox").innerHTML = "<span style='color:red;'>Grade load failed</span>";
             });
 
-        // Modal functions
+        // Modal functions - UPDATED
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             modal.style.display = 'block';
@@ -772,6 +772,7 @@
             } else if (modalId === 'samarqandModal') {
                 document.getElementById('samarqandFrame').src = 'https://makhsalokh.github.io/samarqand-i18n/';
             } else if (modalId === 'samarqandReportModal') {
+                // This will load your samarqand.html file
                 document.getElementById('samarqandReportFrame').src = 'samarqand.html';
             }
         }
@@ -794,4 +795,3 @@
 
         // Close modal when clicking outside of it
         window.onclick = function(event) {
-            const modals = ['reportModal', 'mapModal', 'samarqandModal', 'samarqandReport
