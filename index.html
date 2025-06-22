@@ -537,7 +537,7 @@
                 <div class="assignment-subtitle">Samarqand Tourism Website</div>
                 <div class="button-container">
                     <button class="action-button samarqand-button" onclick="openModal('samarqandModal')">🏛️ Samarqand</button>
-                    <a href="https://docs.google.com/document/d/18ibeKcukRUqFS7S_ErC-lSVokF_PtisZZ7Zrd8LGF4I/edit?usp=drivesdk" target="_blank" class="action-button report-button">📄 Report</a>
+                    <button class="action-button report-button" onclick="openModal('samarqandReportModal')">📄 Report</button>
                 </div>
             </div>
 
@@ -595,6 +595,17 @@
                 <span class="close" onclick="closeModal('samarqandModal')">&times;</span>
             </div>
             <iframe id="samarqandFrame" class="modal-iframe" src=""></iframe>
+        </div>
+    </div>
+
+    <!-- Modal for Samarqand Report -->
+    <div id="samarqandReportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Project 2 - Samarqand Report</h2>
+                <span class="close" onclick="closeModal('samarqandReportModal')">&times;</span>
+            </div>
+            <iframe id="samarqandReportFrame" class="modal-iframe" src=""></iframe>
         </div>
     </div>
 
@@ -760,6 +771,8 @@
                 document.getElementById('mapFrame').src = 'https://drive.google.com/file/d/1lyDnpiJNKUzlQujuFeAIQOAetIH6Kk2Z/preview';
             } else if (modalId === 'samarqandModal') {
                 document.getElementById('samarqandFrame').src = 'https://makhsalokh.github.io/samarqand-i18n/';
+            } else if (modalId === 'samarqandReportModal') {
+                document.getElementById('samarqandReportFrame').src = 'samarqand.html';
             }
         }
 
@@ -774,20 +787,11 @@
                 document.getElementById('mapFrame').src = '';
             } else if (modalId === 'samarqandModal') {
                 document.getElementById('samarqandFrame').src = '';
+            } else if (modalId === 'samarqandReportModal') {
+                document.getElementById('samarqandReportFrame').src = '';
             }
         }
 
         // Close modal when clicking outside of it
         window.onclick = function(event) {
-            const modals = ['reportModal', 'mapModal', 'samarqandModal'];
-            
-            modals.forEach(modalId => {
-                const modal = document.getElementById(modalId);
-                if (event.target === modal) {
-                    closeModal(modalId);
-                }
-            });
-        }
-    </script>
-</body>
-</html>
+            const modals = ['reportModal', 'mapModal', 'samarqandModal', 'samarqandReport
