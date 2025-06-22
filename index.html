@@ -11,6 +11,10 @@
             padding: 0;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #f5f5f5 50%, #f5f5f5 100%);
             background-size: 400% 400%;
+
+this is my html code od student potfolio. for section Project 2 Report button i want to change the data remove the old data insede of the Report button and dd new html file inside of it named samarqand.html . it has to show inside of the file directly when touch to the button Report
+
+
             animation: gradientShift 20s ease infinite;
             color: #333;
             position: relative;
@@ -531,13 +535,13 @@
                 </div>
             </div>
 
-            <!-- Project 2 Assignment - UPDATED -->
+            <!-- Project 2 Assignment -->
             <div class="assignment-card">
                 <h3>Project 2</h3>
                 <div class="assignment-subtitle">Samarqand Tourism Website</div>
                 <div class="button-container">
                     <button class="action-button samarqand-button" onclick="openModal('samarqandModal')">🏛️ Samarqand</button>
-                    <button class="action-button report-button" onclick="openModal('samarqandReportModal')">📄 Samarqand Report</button>
+                    <a href="https://docs.google.com/document/d/18ibeKcukRUqFS7S_ErC-lSVokF_PtisZZ7Zrd8LGF4I/edit?usp=drivesdk" target="_blank" class="action-button report-button">📄 Report</a>
                 </div>
             </div>
 
@@ -595,17 +599,6 @@
                 <span class="close" onclick="closeModal('samarqandModal')">&times;</span>
             </div>
             <iframe id="samarqandFrame" class="modal-iframe" src=""></iframe>
-        </div>
-    </div>
-
-    <!-- NEW Modal for Samarqand Report -->
-    <div id="samarqandReportModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Project 2 - Samarqand Report</h2>
-                <span class="close" onclick="closeModal('samarqandReportModal')">&times;</span>
-            </div>
-            <iframe id="samarqandReportFrame" class="modal-iframe" src=""></iframe>
         </div>
     </div>
 
@@ -760,7 +753,7 @@
                 document.getElementById("gradeBox").innerHTML = "<span style='color:red;'>Grade load failed</span>";
             });
 
-        // Modal functions - UPDATED
+        // Modal functions
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             modal.style.display = 'block';
@@ -771,9 +764,6 @@
                 document.getElementById('mapFrame').src = 'https://drive.google.com/file/d/1lyDnpiJNKUzlQujuFeAIQOAetIH6Kk2Z/preview';
             } else if (modalId === 'samarqandModal') {
                 document.getElementById('samarqandFrame').src = 'https://makhsalokh.github.io/samarqand-i18n/';
-            } else if (modalId === 'samarqandReportModal') {
-                // This will load your samarqand.html file
-                document.getElementById('samarqandReportFrame').src = 'samarqand.html';
             }
         }
 
@@ -788,10 +778,21 @@
                 document.getElementById('mapFrame').src = '';
             } else if (modalId === 'samarqandModal') {
                 document.getElementById('samarqandFrame').src = '';
-            } else if (modalId === 'samarqandReportModal') {
-                document.getElementById('samarqandReportFrame').src = '';
             }
         }
 
         // Close modal when clicking outside of it
         window.onclick = function(event) {
+            const modals = ['reportModal', 'mapModal', 'samarqandModal'];
+            
+            modals.forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (event.target === modal) {
+                    closeModal(modalId);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
